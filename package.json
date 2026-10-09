@@ -1,5 +1,8 @@
 {
   "name": "minishop",
   "private": true,
-  "scripts": {}
+  "scripts": {
+    "lab:binding:cjs": "node labs/01-modules/1-binding/main.cjs",
+    "lab:binding:esm": "node labs/01-modules/1-binding/main.mjs"
+  }
 }
