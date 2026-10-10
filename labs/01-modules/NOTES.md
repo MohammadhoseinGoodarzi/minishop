@@ -126,50 +126,41 @@ b.mjs sees a = A
 {}: فک کنم حالت دیفالت رو درنظر بگیره
 
 ```
-npm run lab:type
+###{ "type": "commonjs" }:npm run lab:type
 
 > lab:type
 > node labs/01-modules/4-type-field/index.js
 
-(node:18800) Warning: Failed to load the ES module: C:\Users\MHG\Desktop\private project\minishop\labs\01-modules\4-type-field\helper.js. Make sure to set "type": "module" in the nearest package.json file or use the .mjs extension.
+(node:10764) Warning: Failed to load the ES module: C:\Users\MHG\Desktop\private project\minishop\labs\01-modules\4-type-field\index.js. Make sure to set "type": "module" in the nearest package.json file or use the .mjs extension.
 (Use `node --trace-warnings ...` to show where the warning was created)
-C:\Users\MHG\Desktop\private project\minishop\labs\01-modules\4-type-field\helper.js:2
-export function greet(name) {
+C:\Users\MHG\Desktop\private project\minishop\labs\01-modules\4-type-field\index.js:1
+import { greet } from "./helper.js";
 ^^^^^^
 
-SyntaxError: Unexpected token 'export'
+SyntaxError: Cannot use import statement outside a module
     at wrapSafe (node:internal/modules/cjs/loader:1806:18)
     at Module._compile (node:internal/modules/cjs/loader:1847:20)
     at Object..js (node:internal/modules/cjs/loader:2013:10)
     at Module.load (node:internal/modules/cjs/loader:1596:32)
     at Module._load (node:internal/modules/cjs/loader:1398:12)
     at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
-    at Module.require (node:internal/modules/cjs/loader:1619:12)
-    at require (node:internal/modules/helpers:191:16)
-    at Object.<anonymous> (C:\Users\MHG\Desktop\private project\minishop\labs\01-modules\4-type-field\index.js:1:15)
-    at Module._compile (node:internal/modules/cjs/loader:1873:14)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47
 
 Node.js v26.3.0
 
-npm run lab:type
+{}:npm run lab:type
 
 > lab:type
 > node labs/01-modules/4-type-field/index.js
 
-node:internal/modules/run_main:76
-  const type = getNearestParentPackageJSONType(mainPath);
-               ^
+(node:16244) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/MHG/Desktop/private%20project/minishop/labs/01-modules/4-type-field/index.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\Users\MHG\Desktop\private project\minishop\labs\01-modules\4-type-field\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Hello MiniShop
 
-Error: Invalid package config \\?\C:\Users\MHG\Desktop\private project\minishop\labs\01-modules\4-type-field\package.json.
-    at shouldUseESMLoader (node:internal/modules/run_main:76:16)
-    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:147:20)
-    at node:internal/main/run_main_module:33:47 {
-  code: 'ERR_INVALID_PACKAGE_CONFIG'
-}
-
-Node.js v26.3.0
-
-npm run lab:type
+{ "type": "module" }:npm run lab:type
 
 > lab:type
 > node labs/01-modules/4-type-field/index.js

@@ -1,2 +1,2 @@
-// main.mjs
+// main.cjs
 require("./a.cjs");
