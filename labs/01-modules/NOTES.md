@@ -64,3 +64,57 @@ a sees id: 0.33060552133827126
 b sees id: 0.33060552133827126
 main.mjs start
 ```
+
+## 3. circular
+
+برنامه خطا میده یا اجرا می‌شه؟
+cjs:اجرا میشه اما هشدار میده چون مقدار فعلی a هیچی نیست پس یک ابجکت خالیه
+esm:اجرا نمیشه و خطا میده و میگه نمیشه به a دسترسی داشت چون هنوز تعریف نشده
+
+b مقدار a رو چی می‌بینه؟
+cjs:یک ابجکت خالی
+esm:نمیبینه چون قبل تعریف شدن کال شده و هنوز نیستش
+
+```
+npm run lab:circular:esm
+
+> lab:circular:esm
+> node labs/01-modules/3-circular/esm/main.mjs
+
+file:///C:/Users/MHG/Desktop/private%20project/minishop/labs/01-modules/3-circular/esm/b.mjs:5
+console.log("b.mjs sees a =", a);
+                              ^
+
+ReferenceError: Cannot access 'a' before initialization
+    at file:///C:/Users/MHG/Desktop/private%20project/minishop/labs/01-modules/3-circular/esm/b.mjs:5:31
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:646:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v26.3.0
+
+npm run lab:circular:cjs
+
+> lab:circular:cjs
+> node labs/01-modules/3-circular/cjs/main.cjs
+
+b.cjs sees a = {}
+a.cjs sees b = { b: 'B' }
+(node:8264) Warning: Accessing non-existent property 'Symbol(nodejs.util.inspect.custom)' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8264) Warning: Accessing non-existent property 'constructor' of module exports inside circular dependency
+(node:8264) Warning: Accessing non-existent property 'Symbol(Symbol.toStringTag)' of module exports inside circular dependency
+
+npm run lab:circular:fixed
+
+> lab:circular:fixed
+> node labs/01-modules/3-circular/fixed/main.mjs
+
+a.mjs sees b = B
+b.mjs sees a = A
+```
+
+چرا؟
+از فایل مین ب فایل a میرویم اول در بالا b ایمپورت شده پس میریم سراغ اون ولی باز میبینیم که a ایمپورت شده اما چون قبلا توش بودیم و کش شده دیگه ادامه میدیم همون b رو تو خط بعدی b تعریف میشه و بعدش کنسول رو داریم که میاد a رو از کش بخونه اما میبینه که a هنوز تعریف نشده پس اررور میخوره و همینجا متوقف میشه
+در cjs وقتی ب کنسول میرسه اینبار a رو یک ابجکت خالی داره تو کش پس همونو چاپ میکنه و ادامه میده و به a برمیگرده و بعد خود a رو تعریف میکنه اما مقدارش دیگه مهم نیست چون دیگه از لاگ اون گذشتیم بعد به لاگ بعدی میرسه و b رو چاپ میکنه
+بنظر رفتار cjs بدتره چون درمورد a گمراه میشیم و مقدار درست و واقعیشو نداریم
