@@ -118,3 +118,61 @@ b.mjs sees a = A
 از فایل مین ب فایل a میرویم اول در بالا b ایمپورت شده پس میریم سراغ اون ولی باز میبینیم که a ایمپورت شده اما چون قبلا توش بودیم و کش شده دیگه ادامه میدیم همون b رو تو خط بعدی b تعریف میشه و بعدش کنسول رو داریم که میاد a رو از کش بخونه اما میبینه که a هنوز تعریف نشده پس اررور میخوره و همینجا متوقف میشه
 در cjs وقتی ب کنسول میرسه اینبار a رو یک ابجکت خالی داره تو کش پس همونو چاپ میکنه و ادامه میده و به a برمیگرده و بعد خود a رو تعریف میکنه اما مقدارش دیگه مهم نیست چون دیگه از لاگ اون گذشتیم بعد به لاگ بعدی میرسه و b رو چاپ میکنه
 بنظر رفتار cjs بدتره چون درمورد a گمراه میشیم و مقدار درست و واقعیشو نداریم
+
+## 4. type field
+
+"type": "commonjs": باعث میشه همه فایل های js داخل پوشه باهاشون مثل cjs برخورد بشه
+"type": "module": معادل همون esm هستش
+{}: فک کنم حالت دیفالت رو درنظر بگیره
+
+```
+npm run lab:type
+
+> lab:type
+> node labs/01-modules/4-type-field/index.js
+
+(node:18800) Warning: Failed to load the ES module: C:\Users\MHG\Desktop\private project\minishop\labs\01-modules\4-type-field\helper.js. Make sure to set "type": "module" in the nearest package.json file or use the .mjs extension.
+(Use `node --trace-warnings ...` to show where the warning was created)
+C:\Users\MHG\Desktop\private project\minishop\labs\01-modules\4-type-field\helper.js:2
+export function greet(name) {
+^^^^^^
+
+SyntaxError: Unexpected token 'export'
+    at wrapSafe (node:internal/modules/cjs/loader:1806:18)
+    at Module._compile (node:internal/modules/cjs/loader:1847:20)
+    at Object..js (node:internal/modules/cjs/loader:2013:10)
+    at Module.load (node:internal/modules/cjs/loader:1596:32)
+    at Module._load (node:internal/modules/cjs/loader:1398:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1619:12)
+    at require (node:internal/modules/helpers:191:16)
+    at Object.<anonymous> (C:\Users\MHG\Desktop\private project\minishop\labs\01-modules\4-type-field\index.js:1:15)
+    at Module._compile (node:internal/modules/cjs/loader:1873:14)
+
+Node.js v26.3.0
+
+npm run lab:type
+
+> lab:type
+> node labs/01-modules/4-type-field/index.js
+
+node:internal/modules/run_main:76
+  const type = getNearestParentPackageJSONType(mainPath);
+               ^
+
+Error: Invalid package config \\?\C:\Users\MHG\Desktop\private project\minishop\labs\01-modules\4-type-field\package.json.
+    at shouldUseESMLoader (node:internal/modules/run_main:76:16)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:147:20)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'ERR_INVALID_PACKAGE_CONFIG'
+}
+
+Node.js v26.3.0
+
+npm run lab:type
+
+> lab:type
+> node labs/01-modules/4-type-field/index.js
+
+Hello MiniShop
+```

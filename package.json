@@ -7,6 +7,7 @@
     "lab:cache": "node labs/01-modules/2-cache/main.mjs",
     "lab:circular:esm": "node labs/01-modules/3-circular/esm/main.mjs",
     "lab:circular:cjs": "node labs/01-modules/3-circular/cjs/main.cjs",
-    "lab:circular:fixed": "node labs/01-modules/3-circular/fixed/main.mjs"
+    "lab:circular:fixed": "node labs/01-modules/3-circular/fixed/main.mjs",
+    "lab:type": "node labs/01-modules/4-type-field/index.js"
   }
 }
