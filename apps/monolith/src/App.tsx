@@ -7,7 +7,7 @@ export default function App() {
 
   return (
     <main>
-      <h1>MiniShop</h1>
+      {import.meta.env.VITE_APP_TITLE}
       <button onClick={() => setShowCart(true)}>Show cart</button>
       {showCart && (
         <Suspense fallback={<p>Loading cart...</p>}>
