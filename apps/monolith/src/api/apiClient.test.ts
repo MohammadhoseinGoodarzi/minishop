@@ -8,13 +8,15 @@ describe("singleton: the shared apiClient", () => {
   });
 
   it("test A: counts one request", async () => {
-    await apiClient.getProducts();
-    expect(apiClient.getRequestCount()).toBe(1);
+    const client = createApiClient({ latencyMs: 0 });
+    await client.getProducts();
+    expect(client.getRequestCount()).toBe(1);
   });
 
   it("test B: counts one request", async () => {
-    await apiClient.getProducts();
-    expect(apiClient.getRequestCount()).toBe(2);
+    const client = createApiClient({ latencyMs: 0 });
+    await client.getProducts();
+    expect(client.getRequestCount()).toBe(1);
   });
 });
 
