@@ -2,6 +2,7 @@ import { lazy, Suspense, useState } from "react";
 import type { Product } from "./types/product";
 import { ProductList } from "./components/ProductList";
 import { ProductListContainer } from "./containers/ProductListContainer";
+import { ProductCount } from "./components/ProductCount";
 
 const CartPanel = lazy(() => import("./CartPanel"));
 
@@ -15,6 +16,7 @@ export default function App() {
   return (
     <main>
       <h1>{import.meta.env.VITE_APP_TITLE}</h1>
+      <ProductCount />
 
       <ProductList
         products={featuredProducts}
