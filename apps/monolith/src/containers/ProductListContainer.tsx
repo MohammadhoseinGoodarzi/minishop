@@ -1,5 +1,6 @@
 import { ProductList } from "../components/ProductList";
 import { useProducts } from "../hooks/useProducts";
+import { cartStore } from "../store/cartStore";
 
 export function ProductListContainer() {
   const { products, isLoading, error } = useProducts();
@@ -10,10 +11,5 @@ export function ProductListContainer() {
   if (error) {
     return <p>{error}</p>;
   }
-  return (
-    <ProductList
-      products={products}
-      onAddToCart={(product) => console.log("add to cart:", product)}
-    />
-  );
+  return <ProductList products={products} onAddToCart={cartStore.add} />;
 }

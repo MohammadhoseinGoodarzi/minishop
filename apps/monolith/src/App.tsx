@@ -3,6 +3,8 @@ import type { Product } from "./types/product";
 import { ProductList } from "./components/ProductList";
 import { ProductListContainer } from "./containers/ProductListContainer";
 import { ProductCount } from "./components/ProductCount";
+import { CartBadge } from "./components/CartBadge";
+import { cartStore } from "./store/cartStore";
 
 const CartPanel = lazy(() => import("./CartPanel"));
 
@@ -17,11 +19,9 @@ export default function App() {
     <main>
       <h1>{import.meta.env.VITE_APP_TITLE}</h1>
       <ProductCount />
+      <CartBadge />
 
-      <ProductList
-        products={featuredProducts}
-        onAddToCart={(product) => console.log("featured:", product)}
-      />
+      <ProductList products={featuredProducts} onAddToCart={cartStore.add} />
 
       <ProductListContainer />
 

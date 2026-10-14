@@ -8,7 +8,6 @@ export function useProducts() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log("useProducts: fetching");
     let ignore = false;
 
     apiClient
