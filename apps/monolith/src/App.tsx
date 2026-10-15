@@ -5,12 +5,18 @@ import { ProductListContainer } from "./containers/ProductListContainer";
 import { ProductCount } from "./components/ProductCount";
 import { CartBadge } from "./components/CartBadge";
 import { cartStore } from "./store/cartStore";
+import { withFeatureFlag } from "./hocs/withFeatureFlag";
 
 const CartPanel = lazy(() => import("./CartPanel"));
 
 const featuredProducts: Product[] = [
   { id: "f-1", name: "Gift Card", price: 25, category: "gifts" },
 ];
+
+const FeaturedProductList = withFeatureFlag(
+  ProductList,
+  import.meta.env.VITE_FEATURE_FEATURED === "true",
+);
 
 export default function App() {
   const [showCart, setShowCart] = useState(false);
@@ -21,7 +27,10 @@ export default function App() {
       <ProductCount />
       <CartBadge />
 
-      <ProductList products={featuredProducts} onAddToCart={cartStore.add} />
+      <FeaturedProductList
+        products={featuredProducts}
+        onAddToCart={cartStore.add}
+      />
 
       <ProductListContainer />
 
